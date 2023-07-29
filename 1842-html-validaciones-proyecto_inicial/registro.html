@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doguito Petshop | Crear cuenta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="./assets/css/base/base.css">
+    <link rel="stylesheet" href="./assets/css/registro.css">
+    <link rel="stylesheet" href="./assets/css/componentes/card.css">
+    <link rel="stylesheet" href="./assets/css/componentes/inputs.css">
+    <link rel="stylesheet" href="./assets/css/componentes/button.css">
+</head>
+<body>
+    <main class="container flex flex--column flex--center">
+        <div class="cadastro-cabecalho">
+            <img src="./assets/img/doguito.svg" alt="Logo Doguito" class="registry-header__logo">
+            <h1 class="registry-header__title">PetShop</h1>
+        </div>
+        <section class="cartao">
+            <h2 class="card__title">Completa tu registro</h2>
+            <form action="./registro_concluido.html" class="formulario flex flex--column">
+                <fieldset>
+                    <legend class="form__label">Información básica</legend>
+                    <div class="input-container">
+                        <input name="name" id="name" class="input" type="text" placeholder="Nombre" required data-tipo="nombre"> <!-- required = elemento requerido, osea, hara que el navegador forzosamente pida al usuario rellenar el elemento, ademas, se complementa con el type, que nos dira que tipo de input es-->
+                        <label class="input-label" for="name">Nombre</label>
+                        <span class="input-message-error">Este campo no es valido</span>
+                    </div>
+                    <div class="input-container">
+                        <input name="email" id="email" class="input" type="email" placeholder="Email" required data-tipo="email"><!--aqui el type es email para que el navegador le avise al usuario que tipos de datos van ahi-->
+                        <label class="input-label" for="email">Email</label>
+                        <span class="input-message-error">Este campo no es valido</span>
+                    </div>
+                    <div class="input-container">
+                        <input name="password" id="password" class="input" type="password" placeholder="Contraseña" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?!.*[ !@#$%^&*_=+\-]).{6,12}$" title="Escribir de 6 a 12 caracteres maximo, debe contener al menos 1 letra mayuscula y minuscula, un numero y sin caracteres especiales." data-tipo="password"> <!--type = password para que sepa el navegador que tipo de dato requerimos en esta campo, ademas se le pasa la propiedad minlength para la cantidad minima de caracteres a elegir y la de maxlength para la cantidad maxima de caracteres a elegir en una contraseña, minlength="6" maxlength="12", PERO, se agregara pattern para que reciba una expresion regular la cual indicara que la contraseña debe de tener diferentes caracteres, por ultimo el tittle, le dira al usuario lo que se requiere para escribir una contraseña en nuestra pagina-->
+                        <label class="input-label" for="password">Contraseña</label>
+                        <span class="input-message-error">Este campo no es valido</span>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend class="form__label">Información personal</legend>
+                    <div class="input-container">
+                        <input name="birth" id="birth" class="input" type="date" placeholder="Fecha de nacimento" required data-tipo="nacimiento"> <!-- type = date y required, ya que es un dato tipo fecha-->
+                        <label class="input-label" for="birth">Fecha de nacimiento</label>
+                        <span class="input-message-error">Este campo no es valido</span>
+                    </div>
+                    <div class="input-container">
+                        <input name="phoneNumber" id="phoneNumber" class="input" type="text" placeholder="Número telefónico" pattern="\d{10}" required minlength="10" maxlength="10" data-tipo="numero"> <!-- La expresion regular se utiliza para que solo se escriban 10 digitos-->
+                        <label class="input-label" for="phoneNumber">Número telefónico</label>
+                        <span class="input-message-error">Este campo no es valido</span>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend class="form__label">Dirección</legend>
+                    <div class="input-container">
+                        <input name="cep" id="cep" class="input" type="text" placeholder="CEP" required pattern="[\s\S]{10,40}" data-tipo="direccion">
+                        <label class="input-label" for="cep">Dirección completa</label>
+                        <span class="input-message-error">Este campo no es valido</span>
+                    </div>
+                    <div class="input-container">
+                        <input name="city" id="city" class="input" type="text" placeholder="Ciudad" required pattern="[\s\S]{4,30}" data-tipo="ciudad">
+                        <label class="input-label" for="city">Ciudad</label>
+                        <span class="input-message-error">Este campo no es valido</span>
+                    </div>
+                    <div class="input-container">
+                        <input name="state" id="state" class="input" type="text" placeholder="Estado" required pattern="[\s\S]{4,30}" data-tipo="estado">
+                        <label class="input-label" for="state">Estado</label>
+                        <span class="input-message-error">Este campo no es valido</span>
+                    </div>
+                </fieldset>
+                <button class="button">Registrar</a>
+            </form>
+        </section>
+    </main>
+    <script type="module" src="./js/app.js" ></script> 
+</body>
+</html>
+
+<!--
+    ^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?!.*[ !@#$%^&*_=+\-]).{6,12}$
+    
+    ^ > quiero que evalue el texto con la logica siguiente
+   () > ahi van las diferentes reglas a colocar
+   ?= >  esta diciendo que vamos a aceptar caracteres
+            PERO
+  ?=. > estamos diciendo que vamos a aceptar caracteres siempre y cuando no sean un salto del linea
+   *  > este nos indica que lo siguiente en parentesis cuadrado (el conjunto indicado) debe de ir al menos una   sola vez 
+   ?!.* > estamos diciendo que no vamos a aceptar saltos e linea o ningun otro caracter dentro del conjunto indicado
+    .{} > estamos diciendo que queremos que se cumplan las reglas las veces indicadas en este caso de 6 a 12 veces
+
+
+-->
